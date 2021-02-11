@@ -12,14 +12,14 @@ class KonfirmasiPassword extends StatefulWidget {
 }
 
 class _KonfirmasiPasswordState extends State<KonfirmasiPassword> {
-  final TextEditingController _konfirmasiController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _konfirmasiController = TextEditingController();
 
   bool isCek = false;
-  bool isValidKonfirmasi = false;
   bool isValidPassword = false;
-  String isValidKonfirmasiText = 'password harus diisi.';
+  bool isValidKonfirmasi = false;
   String isValidPasswordText = 'masukan lagi password anda.';
+  String isValidKonfirmasiText = 'password harus diisi.';
 
   @override
   Widget build(BuildContext context) {
@@ -327,7 +327,7 @@ class _KonfirmasiPasswordState extends State<KonfirmasiPassword> {
   }
 
   validateKonfirmasi(StateSetter updateState) async {
-    if (_konfirmasiController.text == _passwordController.text) {
+    if (_passwordController.text == _konfirmasiController.text) {
       updateState(() {
         isValidPassword = true;
       });

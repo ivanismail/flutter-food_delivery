@@ -16,7 +16,7 @@ class AuthBloc {
   }
 
   savePassword(String id, String password) {
-    return _authRepo.savePasswoord(id, password);
+    return _authRepo.savePassword(id, password);
   }
 }
 

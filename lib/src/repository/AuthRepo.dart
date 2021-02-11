@@ -15,7 +15,7 @@ class AuthRepo {
     return _authProvider.register(nama, no_telp, email, password);
   }
 
-  Future savePasswoord(String id, String password) {
+  Future savePassword(String id, String password) {
     return _authProvider.savePassword(id, password);
   }
 }

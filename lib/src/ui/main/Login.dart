@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/src/bloc/AuthBloc.dart';
 import 'package:food_delivery/src/ui/main/MainNavigation.dart';
 import 'package:food_delivery/src/ui/main/Register.dart';
+import 'package:food_delivery/src/ui/main/lupapassword/CekEmail.dart';
 import 'package:food_delivery/src/utility/SessionManager.dart';
 import 'package:food_delivery/src/utility/ShowToast.dart';
 
@@ -228,6 +229,10 @@ class _LoginState extends State<Login> {
             Padding(
               padding: EdgeInsets.only(right: 40.0),
               child: InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CekEmail()));
+                },
                 child: Text(
                   'Lupa password?',
                   style: TextStyle(
