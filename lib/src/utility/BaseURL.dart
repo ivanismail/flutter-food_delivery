@@ -9,4 +9,5 @@ class BaseURL {
   static String urlGetValidateEmail = baseURL + "get-validate-email";
   static String urlLogin = baseURL + "get-login";
   static String urlRegister = baseURL + "register";
+  static String urlSavePassword = baseURL + "update-pass";
 }

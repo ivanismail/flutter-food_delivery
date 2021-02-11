@@ -46,7 +46,7 @@ class AuthProvider {
   }
 
   Future<dynamic> savePassword(String id, String password) async {
-    final res = await client.post(BaseURL.urlRegister, headers: {
+    final res = await client.post(BaseURL.urlSavePassword, headers: {
       'Accept': 'aplication/json',
     }, body: {
       'id': id,
