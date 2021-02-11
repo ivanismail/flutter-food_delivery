@@ -23,9 +23,7 @@ class _CekEmailState extends State<CekEmail> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => Login()), (route) => false);
-
+        Navigator.pop(context);
         return Future.value(false);
       },
       child: Scaffold(
@@ -227,10 +225,7 @@ class _CekEmailState extends State<CekEmail> {
       children: [
         InkWell(
           onTap: () {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => Login()),
-                (route) => false);
+            Navigator.pop(context);
           },
           child: Text(
             'Kembali',
