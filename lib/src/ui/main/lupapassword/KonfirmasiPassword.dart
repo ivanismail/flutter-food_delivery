@@ -329,11 +329,11 @@ class _KonfirmasiPasswordState extends State<KonfirmasiPassword> {
   validateKonfirmasi(StateSetter updateState) async {
     if (_passwordController.text == _konfirmasiController.text) {
       updateState(() {
-        isValidPassword = true;
+        isValidKonfirmasi = true;
       });
     } else {
       updateState(() {
-        isValidPassword = false;
+        isValidKonfirmasi = false;
         isValidKonfirmasiText = 'password tidak sama';
       });
     }
