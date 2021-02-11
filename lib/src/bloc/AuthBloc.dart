@@ -14,6 +14,10 @@ class AuthBloc {
   register(String nama, String no_telp, String email, String password) {
     return _authRepo.register(nama, no_telp, email, password);
   }
+
+  savePassword(String id, String password) {
+    return _authRepo.savePasswoord(id, password);
+  }
 }
 
 final authBloc = AuthBloc();

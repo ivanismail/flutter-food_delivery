@@ -44,4 +44,15 @@ class AuthProvider {
 
     return jsonDecode(res.body);
   }
+
+  Future<dynamic> savePassword(String id, String password) async {
+    final res = await client.post(BaseURL.urlRegister, headers: {
+      'Accept': 'aplication/json',
+    }, body: {
+      'id': id,
+      'password': password,
+    });
+
+    return jsonDecode(res.body);
+  }
 }
