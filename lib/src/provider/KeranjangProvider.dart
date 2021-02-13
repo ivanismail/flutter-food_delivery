@@ -6,15 +6,16 @@ import 'package:http/http.dart' show Client;
 class KeranjangProvider {
   Client client = Client();
 
-  Future<dynamic> tambahKeranjang(Map<String, String> data) async {
+  Future<dynamic> tambahKeranjang(String nama_produk, String harga, String qty,
+      String gambar, String id_pelanggan) async {
     final res = await client.post(BaseURL.urlAddCart, headers: {
       'Accept': 'aplication/json',
     }, body: {
-      'nama_produk': data['nama_produk'],
-      'harga': data['harga'],
-      'qty': data['qty'],
-      'gambar': data['gambar'],
-      'id_pelanggan': data['id_pelanggan'],
+      'nama_produk': nama_produk,
+      'harga': harga,
+      'qty': qty,
+      'gambar': gambar,
+      'id_pelanggan': id_pelanggan,
     });
 
     return jsonDecode(res.body);

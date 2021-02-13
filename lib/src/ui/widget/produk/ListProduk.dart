@@ -259,15 +259,13 @@ class _ListProdukState extends State<ListProduk> {
   }
 
   _tambahKeranjang() async {
-    Map<String, String> data = {
-      'nama_produk': widget.nama_produk,
-      'harga': widget.harga,
-      'qty': numQty.toString(),
-      'gambar': widget.gambar,
-      'id_pelangan': widget.id_pelanggan,
-    };
-
-    final res = await cartBloc.addCart(data);
+    final res = await cartBloc.addCart(
+      widget.nama_produk,
+      widget.harga,
+      numQty.toString(),
+      widget.gambar,
+      widget.id_pelanggan,
+    );
 
     bool status = res['status'];
     String message = res['message'];
