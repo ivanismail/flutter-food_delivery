@@ -6,9 +6,13 @@ import 'package:food_delivery/src/ui/widget/produk/ListProduk.dart';
 
 class Produk extends StatefulWidget {
   String kategori;
+  String id_pelanggan;
+  bool isLogin;
 
   Produk({
     this.kategori,
+    this.id_pelanggan,
+    this.isLogin,
   });
   @override
   _ProdukState createState() => _ProdukState();
@@ -73,6 +77,8 @@ class _ProdukState extends State<Produk> {
               harga: data.harga,
               gambar: data.gambar,
               isFavorite: false,
+              id_pelanggan: widget.id_pelanggan,
+              isLogin: widget.isLogin,
             ),
           );
         });

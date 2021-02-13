@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/bloc/ProdukBloc.dart';
 import 'package:food_delivery/src/ui/main/Produk.dart';
+import 'package:food_delivery/src/utility/SessionManager.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,10 +11,14 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController _tabController;
   String kategori = 'all';
+  String id_pelanggan;
+  bool isLogin;
 
   @override
   void initState() {
     _tabController = TabController(vsync: this, length: 7);
+    _getLogin();
+
     super.initState();
   }
 
@@ -128,24 +133,38 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         children: [
           Produk(
             kategori: 'all',
+            id_pelanggan: id_pelanggan,
+            isLogin: isLogin,
           ),
           Produk(
             kategori: 'paket',
+            id_pelanggan: id_pelanggan,
+            isLogin: isLogin,
           ),
           Produk(
             kategori: 'nasi',
+            id_pelanggan: id_pelanggan,
+            isLogin: isLogin,
           ),
           Produk(
             kategori: 'bakso',
+            id_pelanggan: id_pelanggan,
+            isLogin: isLogin,
           ),
           Produk(
             kategori: 'sayuran',
+            id_pelanggan: id_pelanggan,
+            isLogin: isLogin,
           ),
           Produk(
             kategori: 'kue',
+            id_pelanggan: id_pelanggan,
+            isLogin: isLogin,
           ),
           Produk(
             kategori: 'minuman',
+            id_pelanggan: id_pelanggan,
+            isLogin: isLogin,
           ),
         ],
       ),
@@ -182,5 +201,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         kategori = 'minuman';
       });
     }
+  }
+
+  _getLogin() async {
+    bool _isLogin = await SessionManager().getIsLogin();
+    String _id = await SessionManager().getIdPelanggan();
+
+    setState(() {
+      isLogin = _isLogin;
+      id_pelanggan = _id;
+    });
   }
 }

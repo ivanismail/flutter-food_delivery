@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/bloc/KeranjangBloc.dart';
+import 'package:food_delivery/src/ui/main/Login.dart';
 import 'package:food_delivery/src/utility/BaseURL.dart';
+import 'package:food_delivery/src/utility/ShowToast.dart';
 import 'package:intl/intl.dart';
 
 class ListProduk extends StatefulWidget {
@@ -8,8 +11,17 @@ class ListProduk extends StatefulWidget {
   String harga;
   String gambar;
   bool isFavorite;
+  String id_pelanggan;
+  bool isLogin;
 
-  ListProduk({this.nama_produk, this.harga, this.gambar, this.isFavorite});
+  ListProduk({
+    this.nama_produk,
+    this.harga,
+    this.gambar,
+    this.isFavorite,
+    this.id_pelanggan,
+    this.isLogin,
+  });
 
   @override
   _ListProdukState createState() => _ListProdukState();
@@ -18,7 +30,6 @@ class ListProduk extends StatefulWidget {
 class _ListProdukState extends State<ListProduk> {
   final formatter = NumberFormat("#,###");
 
-  var widgetAdd;
   int numQty = 1;
   int max;
   int min;
@@ -212,10 +223,23 @@ class _ListProdukState extends State<ListProduk> {
               size: 20.0,
             ),
           ),
-          Icon(
-            Icons.check,
-            color: Colors.green[600],
-            size: 20.0,
+          InkWell(
+            onTap: () {
+              if (!widget.isLogin) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Login(),
+                    ));
+              } else {
+                _tambahKeranjang();
+              }
+            },
+            child: Icon(
+              Icons.check,
+              color: Colors.green[600],
+              size: 20.0,
+            ),
           ),
           InkWell(
             onTap: () {
@@ -231,6 +255,35 @@ class _ListProdukState extends State<ListProduk> {
           ),
         ],
       );
+    }
+  }
+
+  _tambahKeranjang() async {
+    Map<String, String> data = {
+      'nama_produk': widget.nama_produk,
+      'harga': widget.harga,
+      'qty': numQty.toString(),
+      'gambar': widget.gambar,
+      'id_pelangan': widget.id_pelanggan,
+    };
+
+    final res = await cartBloc.addCart(data);
+
+    bool status = res['status'];
+    String message = res['message'];
+
+    if (status) {
+      print(message);
+
+      setState(() {
+        add = false;
+      });
+
+      ShowToast().showToastSuccess(message);
+    } else {
+      print(message);
+
+      ShowToast().showToastError(message);
     }
   }
 }

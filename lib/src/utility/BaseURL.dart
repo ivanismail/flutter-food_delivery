@@ -10,4 +10,6 @@ class BaseURL {
   static String urlLogin = baseURL + "get-login";
   static String urlRegister = baseURL + "register";
   static String urlSavePassword = baseURL + "update-pass";
+  //Keranjang
+  static String urlAddCart = baseURL + "add-cart";
 }
