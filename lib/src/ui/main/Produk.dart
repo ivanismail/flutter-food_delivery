@@ -73,6 +73,7 @@ class _ProdukState extends State<Produk> {
                       deskripsi: data.deskripsi,
                       gambar: data.gambar,
                       harga: int.parse(data.harga),
+                      getTotalItem: widget.getTotalItem,
                     ),
                   ));
             },

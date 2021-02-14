@@ -64,8 +64,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               ),
             ),
             showBadge: totalItem == 0 ? false : true,
-            position: BadgePosition.topEnd(
-            top: 5, end: 4),
+            position: BadgePosition.topEnd(top: 5, end: 4),
             badgeColor: Colors.lightBlue[800],
             toAnimate: true,
             animationDuration: Duration(milliseconds: 200),
@@ -253,7 +252,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   _getTotalItem() async {
     setState(() {
-      totalItem = 6;
+      totalItem = 0;
     });
 
     final res = await cartBloc.getTotalItem(id_pelanggan);
@@ -265,7 +264,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       print(message);
 
       setState(() {
-         totalItem = res['data']['totalItem'];
+        totalItem1 = res['data']['totalItem'];
+        totalItem = totalItem1.toInt();
       });
     } else {
       print(message);

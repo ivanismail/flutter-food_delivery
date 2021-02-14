@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/ui/main/Login.dart';
 
 class AddCartButton extends StatelessWidget {
+  VoidCallback tambahKeranjang;
+  bool isLogin;
+
+  AddCartButton({
+    this.tambahKeranjang,
+    this.isLogin,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +32,18 @@ class AddCartButton extends StatelessWidget {
               Icons.add_shopping_cart,
               color: Colors.lightBlue[800],
             ),
-            onPressed: () {},
+            onPressed: () {
+              if (isLogin) {
+                tambahKeranjang();
+              } else {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Login(),
+                    ),
+                    (route) => false);
+              }
+            },
           ),
         ),
         Expanded(
@@ -43,7 +63,18 @@ class AddCartButton extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                if (isLogin) {
+                  tambahKeranjang();
+                } else {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Login(),
+                      ),
+                      (route) => false);
+                }
+              },
             ),
           ),
         )
