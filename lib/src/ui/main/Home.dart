@@ -17,7 +17,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   bool isLogin;
 
   int totalItem = 0;
-  int totalItem1 = 0;
+  String totalString;
 
   @override
   void initState() {
@@ -264,8 +264,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       print(message);
 
       setState(() {
-        totalItem1 = res['data']['totalItem'];
-        totalItem = totalItem1.toInt();
+        totalString = res['data']['totalItem'];
+        totalItem = int.parse(totalString);
       });
     } else {
       print(message);

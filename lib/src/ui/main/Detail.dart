@@ -37,6 +37,7 @@ class _DetailState extends State<Detail> {
   int totalItem;
   String id_pelanggan;
   bool isLogin;
+  String totalString;
 
   @override
   void initState() {
@@ -186,7 +187,8 @@ class _DetailState extends State<Detail> {
       print(message);
 
       setState(() {
-        totalItem = res['data']['totalItem'];
+        totalString = res['data']['totalItem'];
+        totalItem = int.parse(totalString);
       });
     } else {
       print(message);
