@@ -26,7 +26,7 @@ AppBar AppBarDetail(
         badgeContent: Text(
           '$totalItem',
           style: TextStyle(
-            color: Colors.red,
+            color: Colors.lightBlue[800],
             fontSize: 10.0,
           ),
         ),
