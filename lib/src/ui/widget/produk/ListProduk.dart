@@ -13,6 +13,7 @@ class ListProduk extends StatefulWidget {
   bool isFavorite;
   String id_pelanggan;
   bool isLogin;
+  VoidCallback getTotalItem;
 
   ListProduk({
     this.nama_produk,
@@ -21,6 +22,7 @@ class ListProduk extends StatefulWidget {
     this.isFavorite,
     this.id_pelanggan,
     this.isLogin,
+    this.getTotalItem,
   });
 
   @override
@@ -277,6 +279,7 @@ class _ListProdukState extends State<ListProduk> {
         add = false;
       });
 
+      widget.getTotalItem();
       ShowToast().showToastSuccess(message);
     } else {
       print(message);

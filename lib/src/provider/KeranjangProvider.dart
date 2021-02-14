@@ -20,4 +20,17 @@ class KeranjangProvider {
 
     return jsonDecode(res.body);
   }
+
+  Future<dynamic> getTotalItem(String id_pelanggan) async {
+    var uri = Uri.parse(BaseURL.urlGetTotalItem);
+
+    uri = uri.replace(queryParameters: <String, String>{
+      'id_pelanggan': id_pelanggan,
+    });
+    final res = await client.get(uri, headers: {
+      'Accept': 'aplication/json',
+    });
+
+    return jsonDecode(res.body);
+  }
 }

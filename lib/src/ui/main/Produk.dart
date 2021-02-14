@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/bloc/ProdukBloc.dart';
 import 'package:food_delivery/src/model/ProdukModel.dart';
@@ -8,11 +10,13 @@ class Produk extends StatefulWidget {
   String kategori;
   String id_pelanggan;
   bool isLogin;
+  VoidCallback getTotalItem;
 
   Produk({
     this.kategori,
     this.id_pelanggan,
     this.isLogin,
+    this.getTotalItem,
   });
   @override
   _ProdukState createState() => _ProdukState();
@@ -79,6 +83,7 @@ class _ProdukState extends State<Produk> {
               isFavorite: false,
               id_pelanggan: widget.id_pelanggan,
               isLogin: widget.isLogin,
+              getTotalItem: widget.getTotalItem,
             ),
           );
         });

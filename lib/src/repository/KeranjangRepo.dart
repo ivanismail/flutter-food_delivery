@@ -4,8 +4,12 @@ class KeranjangRepo {
   final _cartProvider = KeranjangProvider();
 
   Future tambahKeranjang(String nama_produk, String harga, String qty,
-      String gambar, String id_pelangan) {
+      String gambar, String id_pelanggan) {
     return _cartProvider.tambahKeranjang(
-        nama_produk, harga, qty, gambar, id_pelangan);
+        nama_produk, harga, qty, gambar, id_pelanggan);
+  }
+
+  Future getTotalItem(String id_pelanggan) {
+    return _cartProvider.getTotalItem(id_pelanggan);
   }
 }

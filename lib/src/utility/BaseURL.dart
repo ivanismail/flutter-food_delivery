@@ -12,4 +12,5 @@ class BaseURL {
   static String urlSavePassword = baseURL + "update-pass";
   //Keranjang
   static String urlAddCart = baseURL + "add-cart";
+  static String urlGetTotalItem = baseURL + "get-total-item";
 }

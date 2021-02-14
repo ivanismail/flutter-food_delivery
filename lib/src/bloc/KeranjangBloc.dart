@@ -4,9 +4,13 @@ class KeranjangBloc {
   final _cartRepo = KeranjangRepo();
 
   addCart(String nama_produk, String harga, String qty, String gambar,
-      String id_pelangan) {
+      String id_pelanggan) {
     return _cartRepo.tambahKeranjang(
-        nama_produk, harga, qty, gambar, id_pelangan);
+        nama_produk, harga, qty, gambar, id_pelanggan);
+  }
+
+  getTotalItem(String id_pelanggan) {
+    return _cartRepo.getTotalItem(id_pelanggan);
   }
 }
 

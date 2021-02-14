@@ -1,4 +1,6 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/bloc/KeranjangBloc.dart';
 import 'package:food_delivery/src/bloc/ProdukBloc.dart';
 import 'package:food_delivery/src/ui/main/Produk.dart';
 import 'package:food_delivery/src/utility/SessionManager.dart';
@@ -13,6 +15,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   String kategori = 'all';
   String id_pelanggan;
   bool isLogin;
+
+  int totalItem = 0;
+  int totalItem1 = 0;
 
   @override
   void initState() {
@@ -49,6 +54,31 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           textAlign: TextAlign.start,
         ),
+        actions: [
+          Badge(
+            badgeContent: Text(
+              '$totalItem',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 10.0,
+              ),
+            ),
+            showBadge: totalItem == 0 ? false : true,
+            position: BadgePosition.topEnd(
+            top: 5, end: 4),
+            badgeColor: Colors.lightBlue[800],
+            toAnimate: true,
+            animationDuration: Duration(milliseconds: 200),
+            animationType: BadgeAnimationType.scale,
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.grey[600],
+              ),
+            ),
+          ),
+        ],
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: Colors.white,
@@ -135,36 +165,43 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             kategori: 'all',
             id_pelanggan: id_pelanggan,
             isLogin: isLogin,
+            getTotalItem: _getTotalItem,
           ),
           Produk(
             kategori: 'paket',
             id_pelanggan: id_pelanggan,
             isLogin: isLogin,
+            getTotalItem: _getTotalItem,
           ),
           Produk(
             kategori: 'nasi',
             id_pelanggan: id_pelanggan,
             isLogin: isLogin,
+            getTotalItem: _getTotalItem,
           ),
           Produk(
             kategori: 'bakso',
             id_pelanggan: id_pelanggan,
             isLogin: isLogin,
+            getTotalItem: _getTotalItem,
           ),
           Produk(
             kategori: 'sayuran',
             id_pelanggan: id_pelanggan,
             isLogin: isLogin,
+            getTotalItem: _getTotalItem,
           ),
           Produk(
             kategori: 'kue',
             id_pelanggan: id_pelanggan,
             isLogin: isLogin,
+            getTotalItem: _getTotalItem,
           ),
           Produk(
             kategori: 'minuman',
             id_pelanggan: id_pelanggan,
             isLogin: isLogin,
+            getTotalItem: _getTotalItem,
           ),
         ],
       ),
@@ -211,5 +248,27 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       isLogin = _isLogin;
       id_pelanggan = _id;
     });
+    _getTotalItem();
+  }
+
+  _getTotalItem() async {
+    setState(() {
+      totalItem = 6;
+    });
+
+    final res = await cartBloc.getTotalItem(id_pelanggan);
+
+    bool status = res['status'];
+    String message = res['message'];
+
+    if (status) {
+      print(message);
+
+      setState(() {
+         totalItem = res['data']['totalItem'];
+      });
+    } else {
+      print(message);
+    }
   }
 }
