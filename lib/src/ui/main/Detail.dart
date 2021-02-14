@@ -175,7 +175,7 @@ class _DetailState extends State<Detail> {
 
   _getTotalItem() async {
     setState(() {
-      totalItem = 6;
+      totalItem = 0;
     });
 
     final res = await cartBloc.getTotalItem(id_pelanggan);
