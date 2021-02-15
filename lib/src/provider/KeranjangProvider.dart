@@ -1,10 +1,30 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:food_delivery/src/model/KeranjangModel.dart';
 import 'package:food_delivery/src/utility/BaseURL.dart';
 import 'package:http/http.dart' show Client;
 
 class KeranjangProvider {
   Client client = Client();
+
+  Future<List<KeranjangModel>> getKeranjang(String id_pelanggan) async {
+    var uri = Uri.parse(BaseURL.urlGetCart);
+
+    uri = uri.replace(queryParameters: <String, String>{
+      'id_pelanggan': id_pelanggan,
+    });
+
+    final res = await client.get(uri, headers: {
+      'Accept': 'application/json',
+    });
+
+    if (res.statusCode == 200) {
+      return compute(keranjangFromJson, res.body);
+    } else {
+      return [];
+    }
+  }
 
   Future<dynamic> tambahKeranjang(String nama_produk, String harga, String qty,
       String gambar, String id_pelanggan) async {

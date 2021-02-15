@@ -1,7 +1,12 @@
+import 'package:food_delivery/src/model/KeranjangModel.dart';
 import 'package:food_delivery/src/provider/KeranjangProvider.dart';
 
 class KeranjangRepo {
   final _cartProvider = KeranjangProvider();
+
+  Future<List<KeranjangModel>> getKeranjang(String id_pelanggan) {
+    return _cartProvider.getKeranjang(id_pelanggan);
+  }
 
   Future tambahKeranjang(String nama_produk, String harga, String qty,
       String gambar, String id_pelanggan) {

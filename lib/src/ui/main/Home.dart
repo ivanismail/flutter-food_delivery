@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/bloc/KeranjangBloc.dart';
 import 'package:food_delivery/src/bloc/ProdukBloc.dart';
+import 'package:food_delivery/src/ui/main/Keranjang.dart';
 import 'package:food_delivery/src/ui/main/Produk.dart';
 import 'package:food_delivery/src/utility/SessionManager.dart';
 
@@ -70,7 +71,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             animationDuration: Duration(milliseconds: 200),
             animationType: BadgeAnimationType.scale,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Keranjang(
+                        id_pelanggan: id_pelanggan,
+                        getTotalItem: _getTotalItem,
+                      ),
+                    ));
+              },
               icon: Icon(
                 Icons.shopping_cart,
                 color: Colors.grey[600],
