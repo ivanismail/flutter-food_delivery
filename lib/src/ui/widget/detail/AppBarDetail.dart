@@ -26,13 +26,13 @@ AppBar AppBarDetail(
         badgeContent: Text(
           '$totalItem',
           style: TextStyle(
-            color: Colors.lightBlue[800],
-            fontSize: 10.0,
+            color: Colors.white,
+            fontSize: 8.0,
           ),
         ),
         showBadge: totalItem == 0 ? false : true,
         position: BadgePosition.topEnd(top: 5, end: 4),
-        badgeColor: Colors.white,
+        badgeColor: Colors.red,
         toAnimate: true,
         animationDuration: Duration(milliseconds: 200),
         animationType: BadgeAnimationType.scale,
