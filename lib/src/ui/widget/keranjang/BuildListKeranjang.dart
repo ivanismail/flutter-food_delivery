@@ -54,6 +54,52 @@ Widget BuildListKeranjang(
                 SizedBox(
                   height: 10.0,
                 ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RichText(
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontFamily: 'Varela',
+                            color: Colors.grey[800],
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          text: data.nama_produk,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.remove_circle,
+                            color: Colors.red[600],
+                            size: 24.0,
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Text(
+                            '$numQty',
+                            style: TextStyle(
+                                fontFamily: 'Varela',
+                                color: Colors.black,
+                                fontSize: 14.0),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),
