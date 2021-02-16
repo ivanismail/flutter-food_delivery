@@ -13,5 +13,6 @@ class BaseURL {
   //Keranjang
   static String urlGetCart = baseURL + "get-cart-item";
   static String urlAddCart = baseURL + "add-cart";
+  static String urlupdateQtyCart = baseURL + "update-cart";
   static String urlGetTotalItem = baseURL + "get-total-item";
 }

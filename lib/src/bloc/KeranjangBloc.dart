@@ -20,6 +20,10 @@ class KeranjangBloc {
         nama_produk, harga, qty, gambar, id_pelanggan);
   }
 
+  udpateQtyCart(String id, String qty) {
+    return _cartRepo.ubahQtyKeranjang(id, qty);
+  }
+
   getTotalItem(String id_pelanggan) {
     return _cartRepo.getTotalItem(id_pelanggan);
   }

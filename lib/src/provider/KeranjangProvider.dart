@@ -41,6 +41,17 @@ class KeranjangProvider {
     return jsonDecode(res.body);
   }
 
+  Future<dynamic> ubahQtyKeranjang(String qty, String id) async {
+    final res = await client.post(BaseURL.urlAddCart, headers: {
+      'Accept': 'aplication/json',
+    }, body: {
+      'qty': qty,
+      'id': id,
+    });
+
+    return jsonDecode(res.body);
+  }
+
   Future<dynamic> getTotalItem(String id_pelanggan) async {
     var uri = Uri.parse(BaseURL.urlGetTotalItem);
 

@@ -14,6 +14,10 @@ class KeranjangRepo {
         nama_produk, harga, qty, gambar, id_pelanggan);
   }
 
+  Future ubahQtyKeranjang(String id, String qty) {
+    return _cartProvider.ubahQtyKeranjang(id, qty);
+  }
+
   Future getTotalItem(String id_pelanggan) {
     return _cartProvider.getTotalItem(id_pelanggan);
   }
