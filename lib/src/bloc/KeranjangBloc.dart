@@ -20,8 +20,12 @@ class KeranjangBloc {
         nama_produk, harga, qty, gambar, id_pelanggan);
   }
 
-  udpateQtyCart(String id, String qty) {
-    return _cartRepo.ubahQtyKeranjang(id, qty);
+  udpateQtyCart(Map<String, String> data) {
+    return _cartRepo.ubahQtyKeranjang(data);
+  }
+
+  deleteItemCart(Map<String, String> data) {
+    return _cartRepo.deleteItemKeranjang(data);
   }
 
   getTotalItem(String id_pelanggan) {

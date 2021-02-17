@@ -14,8 +14,12 @@ class KeranjangRepo {
         nama_produk, harga, qty, gambar, id_pelanggan);
   }
 
-  Future ubahQtyKeranjang(String id, String qty) {
-    return _cartProvider.ubahQtyKeranjang(id, qty);
+  Future ubahQtyKeranjang(Map<String, String> data) {
+    return _cartProvider.ubahQtyKeranjang(data);
+  }
+
+  Future deleteItemKeranjang(Map<String, String> data) {
+    return _cartProvider.deleteItemKeranjang(data);
   }
 
   Future getTotalItem(String id_pelanggan) {

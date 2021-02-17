@@ -41,12 +41,22 @@ class KeranjangProvider {
     return jsonDecode(res.body);
   }
 
-  Future<dynamic> ubahQtyKeranjang(String qty, String id) async {
-    final res = await client.post(BaseURL.urlAddCart, headers: {
+  Future<dynamic> ubahQtyKeranjang(Map<String, String> data) async {
+    final res = await client.post(BaseURL.urlupdateQtyCart, headers: {
       'Accept': 'aplication/json',
     }, body: {
-      'qty': qty,
-      'id': id,
+      'id': data['id'],
+      'qty': data['qty'],
+    });
+
+    return jsonDecode(res.body);
+  }
+
+  Future<dynamic> deleteItemKeranjang(Map<String, String> data) async {
+    final res = await client.post(BaseURL.urlupdateQtyCart, headers: {
+      'Accept': 'aplication/json',
+    }, body: {
+      'id': data['id'],
     });
 
     return jsonDecode(res.body);

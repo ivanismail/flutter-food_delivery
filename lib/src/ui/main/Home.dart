@@ -16,6 +16,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   String kategori = 'all';
   String id_pelanggan;
   bool isLogin;
+  VoidCallback getTotalItem;
 
   int totalItem = 0;
   String totalString;

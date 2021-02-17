@@ -196,7 +196,9 @@ class _ListProdukState extends State<ListProduk> {
           InkWell(
             onTap: () {
               setState(() {
-                numQty--;
+                if (numQty > 1) {
+                  numQty--;
+                }
               });
             },
             child: Icon(
