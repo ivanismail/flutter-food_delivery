@@ -52,11 +52,14 @@ class KeranjangProvider {
     return jsonDecode(res.body);
   }
 
-  Future<dynamic> deleteItemKeranjang(Map<String, String> data) async {
-    final res = await client.post(BaseURL.urlupdateQtyCart, headers: {
+  Future<dynamic> deleteItemCart(String id) async {
+    var uri = Uri.parse(BaseURL.urldeleteItemCart);
+
+    uri = uri.replace(queryParameters: <String, String>{
+      'id': id,
+    });
+    final res = await client.delete(uri, headers: {
       'Accept': 'aplication/json',
-    }, body: {
-      'id': data['id'],
     });
 
     return jsonDecode(res.body);

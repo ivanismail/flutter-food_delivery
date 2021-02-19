@@ -24,8 +24,8 @@ class KeranjangBloc {
     return _cartRepo.ubahQtyKeranjang(data);
   }
 
-  deleteItemCart(Map<String, String> data) {
-    return _cartRepo.deleteItemKeranjang(data);
+  deleteItemCart(String id) {
+    return _cartRepo.deleteItemKeranjang(id);
   }
 
   getTotalItem(String id_pelanggan) {

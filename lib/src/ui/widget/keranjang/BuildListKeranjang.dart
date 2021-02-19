@@ -167,10 +167,8 @@ Widget BuildListKeranjang(
                 color: Colors.red[600],
                 size: 28.0,
               ),
-              onTap: () {
-                _deleteItemCart(data.id, data.id_pelanggan);
-                print('hapus item');
-              },
+              onTap: () => _deleteItemCart(data.id, data.id_pelanggan),
+
             ),
           ],
         );
@@ -182,46 +180,35 @@ Widget BuildListKeranjang(
 _updateQtyCart(String id, int numQty, String id_pelanggan) async {
   Map<String, String> data = {
     'id': id,
-    'id_pelanggan': id_pelanggan,
     'qty': numQty.toString(),
   };
 
-  final res = cartBloc.udpateQtyCart(data);
+  final res = await cartBloc.udpateQtyCart(data);
 
   bool status = res['status'];
   String message = res['message'];
 
   if (status) {
-    print(message);
     cartBloc.getKeranjang(id_pelanggan);
 
     ShowToast().showToastSuccess(message);
   } else {
-    print(message);
 
     ShowToast().showToastError(message);
   }
 }
 
 _deleteItemCart(String id, String id_pelanggan) async {
-  Map<String, String> data = {
-    'id': id,
-    'id_pelanggan': id_pelanggan,
-  };
-
-  final res = cartBloc.deleteItemCart(data);
+  final res = await cartBloc.deleteItemCart(id);
 
   bool status = res['status'];
   String message = res['message'];
 
   if (status) {
-    print(message);
     cartBloc.getKeranjang(id_pelanggan);
 
     ShowToast().showToastSuccess(message);
   } else {
-    print(message);
-
     ShowToast().showToastError(message);
   }
 }

@@ -14,5 +14,6 @@ class BaseURL {
   static String urlGetCart = baseURL + "get-cart-item";
   static String urlAddCart = baseURL + "add-cart";
   static String urlupdateQtyCart = baseURL + "update-cart";
+  static String urldeleteItemCart = baseURL + "delete-item-cart";
   static String urlGetTotalItem = baseURL + "get-total-item";
 }
