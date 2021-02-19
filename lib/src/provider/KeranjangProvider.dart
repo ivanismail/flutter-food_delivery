@@ -53,13 +53,10 @@ class KeranjangProvider {
   }
 
   Future<dynamic> deleteItemCart(String id) async {
-    var uri = Uri.parse(BaseURL.urldeleteItemCart);
-
-    uri = uri.replace(queryParameters: <String, String>{
-      'id': id,
-    });
-    final res = await client.delete(uri, headers: {
+    final res = await client.post(BaseURL.urldeleteItemCart, headers: {
       'Accept': 'aplication/json',
+    }, body: {
+      'id': id,
     });
 
     return jsonDecode(res.body);
