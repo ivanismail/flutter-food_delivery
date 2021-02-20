@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/bloc/KeranjangBloc.dart';
 import 'package:food_delivery/src/model/KeranjangModel.dart';
+import 'package:food_delivery/src/ui/main/Pemesanan.dart';
 import 'package:food_delivery/src/ui/widget/detail/AppBarDetail.dart';
 import 'package:food_delivery/src/ui/widget/keranjang/AppBarKeranjang.dart';
 import 'package:food_delivery/src/ui/widget/keranjang/BuildListKeranjang.dart';
@@ -82,7 +83,55 @@ class _KeranjangState extends State<Keranjang> {
                     );
                   },
                 ),
-              )
+              ),
+              Positioned(
+                bottom: 0.1,
+                left: 0.1,
+                right: 0.1,
+                child: Container(
+                  height: 60.0,
+                  padding: EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 1.0,
+                        color: Colors.grey.withOpacity(0.1),
+                        spreadRadius: 1.0,
+                      ),
+                    ],
+                  ),
+                  child: Material(
+                    elevation: 0.1,
+                    color: Colors.lightBlue[800],
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(5.0),
+                      child: Container(
+                        width: 160.0,
+                        child: Center(
+                          child: Text(
+                            'Lanjutkan pemesanan'.toUpperCase(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Pemesanan(
+                                      id_pelanggan: widget.id_pelanggan,
+                                    )));
+                      },
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
