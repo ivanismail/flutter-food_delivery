@@ -23,7 +23,9 @@ class Bayar extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        onTap: () {/*showModalPembayarn(context);*/},
+        onTap: () {
+          showModalPembayaran(context);
+        },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -57,7 +59,7 @@ class Bayar extends StatelessWidget {
     );
   }
 
-  void showModalPembayarn(BuildContext context) {
+  void showModalPembayaran(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
