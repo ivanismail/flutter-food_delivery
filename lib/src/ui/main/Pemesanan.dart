@@ -26,6 +26,8 @@ class _PemesananState extends State<Pemesanan> {
   double lng;
   String alamat;
   String payment;
+  String totalString;
+  String totalString2;
   int isBayar;
   int totalBayar;
   int totalOngkir;
@@ -155,8 +157,10 @@ class _PemesananState extends State<Pemesanan> {
 
     if (data['status']) {
       setState(() {
-        totalBayar = data['data']['totalBayar'];
-        totalOngkir = data['data']['totalOngkir'];
+        totalString = data['data']['totalBayar'];
+        totalBayar = int.parse(totalString);
+        totalString2 = data['data']['totalOngkir'];
+        totalOngkir = int.parse(totalString2);
       });
     } else {
       print(data['message']);
