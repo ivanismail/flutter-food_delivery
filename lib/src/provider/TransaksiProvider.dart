@@ -6,7 +6,7 @@ import 'package:http/http.dart' show Client;
 class TransaksiProvider {
   Client client = Client();
 
-  Future<dynamic> getTotalBayarl(String id_pelanggan) async {
+  Future<dynamic> getTotalBayar(String id_pelanggan) async {
     var uri = Uri.parse(BaseURL.urlGetTotalbayar);
 
     uri = uri.replace(queryParameters: <String, String>{

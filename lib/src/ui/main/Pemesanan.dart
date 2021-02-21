@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/bloc/TransaksiBloc.dart';
 import 'package:food_delivery/src/ui/widget/pemesanan/Alamat.dart';
 import 'package:food_delivery/src/ui/widget/pemesanan/AppBar.dart';
+import 'package:food_delivery/src/ui/widget/pemesanan/ListPesanan.dart';
 import 'package:food_delivery/src/utility/SessionManager.dart';
 import 'package:intl/intl.dart';
 
@@ -16,6 +18,7 @@ class Pemesanan extends StatefulWidget {
 
 class _PemesananState extends State<Pemesanan> {
   TextEditingController _noteController = TextEditingController();
+  final formatter = NumberFormat("#,###");
 
   double lat;
   double lng;
@@ -33,11 +36,13 @@ class _PemesananState extends State<Pemesanan> {
     super.initState();
     _getAddress();
     _getPayment();
+    _getTotalBayar();
   }
 
   @override
   Widget build(BuildContext context) {
-    final formatter = NumberFormat("#,###");
+    print(totalBayar);
+    print(totalOngkir);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -69,7 +74,42 @@ class _PemesananState extends State<Pemesanan> {
                   Alamat(
                     alamat: alamat,
                     getAddress: _getAddress,
-                  )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
+                      top: 10.0,
+                    ),
+                    child: Text(
+                      'RINGKASAN PESANAN',
+                      style: TextStyle(
+                        fontFamily: 'Varela',
+                        fontSize: 12.0,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  ListPesanan(
+                    id_pelanggan: widget.id_pelanggan,
+                    ongkir: totalOngkir,
+                    totalBayar: totalBayar,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
+                      top: 10.0,
+                    ),
+                    child: Text(
+                      'METODE PEMBAYARAN',
+                      style: TextStyle(
+                        fontFamily: 'Varela',
+                        fontSize: 12.0,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
                 ],
               ),
             )
@@ -97,5 +137,17 @@ class _PemesananState extends State<Pemesanan> {
       payment = _result['payment'];
       validPayment = _result['hasData'];
     });
+  }
+
+  _getTotalBayar() async {
+    final data = await transaksiBloc.getTotalBayar(widget.id_pelanggan);
+
+    if (data['status']) {
+      setState(() {});
+      totalBayar = data['data']['totalBayar'];
+      totalOngkir = data['data']['totalOngkir'];
+    } else {
+      print(data['message']);
+    }
   }
 }
