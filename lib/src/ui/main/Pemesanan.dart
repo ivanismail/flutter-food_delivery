@@ -29,8 +29,8 @@ class _PemesananState extends State<Pemesanan> {
   String totalString;
   String totalString2;
   int isBayar;
-  int totalBayar=0;
-  int totalOngkir=0;
+  int totalBayar = 0;
+  int totalOngkir = 0;
   bool isKirim = false;
   bool validAlamat;
   bool validPayment;
@@ -154,8 +154,8 @@ class _PemesananState extends State<Pemesanan> {
 
   _getTotalBayar() async {
     setState(() {
-      totalBayar = 120;
-      totalOngkir = 1222;
+      totalBayar = 0;
+      totalOngkir = 0;
     });
 
     final data = await transaksiBloc.getTotalBayar(widget.id_pelanggan);

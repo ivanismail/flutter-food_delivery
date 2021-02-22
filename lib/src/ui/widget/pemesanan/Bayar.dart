@@ -5,7 +5,10 @@ class Bayar extends StatelessWidget {
   String payment;
   VoidCallback getPayment;
 
-  Bayar({this.payment, this.getPayment});
+  Bayar({
+    this.payment,
+    this.getPayment,
+  });
 
   @override
   Widget build(BuildContext context) {

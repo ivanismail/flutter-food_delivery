@@ -55,9 +55,9 @@ class SessionManager {
   }
 
   //Session Payment
-  setSessionPayment(String pay) async {
+  setSessionPayment(String payment) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString('payment', pay);
+    preferences.setString('payment', payment);
     preferences.setBool('hasData', true);
   }
 
