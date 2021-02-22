@@ -126,7 +126,8 @@ class _KeranjangState extends State<Keranjang> {
                             MaterialPageRoute(
                                 builder: (context) => Pemesanan(
                                       id_pelanggan: widget.id_pelanggan,
-                                    )));
+                                    )
+                            ));
                       },
                     ),
                   ),

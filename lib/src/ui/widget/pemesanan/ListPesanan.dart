@@ -43,82 +43,85 @@ class _ListPesananState extends State<ListPesanan> {
           5.0,
         ),
       ),
-      child: Column(
-        children: [
-          StreamBuilder(
-            stream: cartBloc.countKeranjang,
-            builder: (context, AsyncSnapshot<List<KeranjangModel>> snap) {
-              if (snap.hasData) {
-                if (snap.data.isEmpty) {
-                  return Center(child: Text('Tidak ada belanjaan'));
-                } else {
-                  return buildItem(context, snap);
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            StreamBuilder(
+              stream: cartBloc.countKeranjang,
+              builder: (context, AsyncSnapshot<List<KeranjangModel>> snap) {
+                if (snap.hasData) {
+                  if (snap.data.isEmpty) {
+                    return Center(child: Text('Tidak ada belanjaan')
+                    );
+                  } else {
+                    return buildItem(context, snap);
+                  }
+                } else if (snap.hasError) {
+                  return Text(snap.error.toString());
                 }
-              } else if (snap.hasError) {
-                return Text(snap.error.toString());
-              }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
-          Divider(),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 5.0,
-              right: 5.0,
+                return Center(
+                  child: CircularProgressIndicator(),);
+              },
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Subtotal',
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 14.0,
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 5.0,
+                right: 5.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Subtotal',
+                    style: TextStyle(
+                      fontFamily: 'Varela',
+                      fontSize: 14.0,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  'Rp. ${formatter.format(widget.totalBayar)}',
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 13.0,
+                  Text(
+                    'Rp. ${formatter.format(widget.totalBayar)}',
+                    style: TextStyle(
+                      fontFamily: 'Varela',
+                      fontSize: 13.0,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 5.0,
-              right: 5.0,
-              top: 5.0,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Ongkos Kirim',
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 14.0,
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 5.0,
+                right: 5.0,
+                top: 5.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Ongkos Kirim',
+                    style: TextStyle(
+                      fontFamily: 'Varela',
+                      fontSize: 14.0,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  'Rp. ${formatter.format(widget.ongkir)}',
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 13.0,
+                  Text(
+                    'Rp. ${formatter.format(widget.ongkir)}',
+                    style: TextStyle(
+                      fontFamily: 'Varela',
+                      fontSize: 13.0,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

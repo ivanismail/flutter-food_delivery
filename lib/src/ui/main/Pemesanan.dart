@@ -29,8 +29,8 @@ class _PemesananState extends State<Pemesanan> {
   String totalString;
   String totalString2;
   int isBayar;
-  int totalBayar;
-  int totalOngkir;
+  int totalBayar=0;
+  int totalOngkir=0;
   bool isKirim = false;
   bool validAlamat;
   bool validPayment;
@@ -95,11 +95,11 @@ class _PemesananState extends State<Pemesanan> {
                         textAlign: TextAlign.start,
                       ),
                     ),
-                    /* ListPesanan(
+                    ListPesanan(
                       id_pelanggan: widget.id_pelanggan,
                       ongkir: totalOngkir,
                       totalBayar: totalBayar,
-                    ), */
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 15.0,
@@ -153,9 +153,17 @@ class _PemesananState extends State<Pemesanan> {
   }
 
   _getTotalBayar() async {
+    setState(() {
+      totalBayar = 120;
+      totalOngkir = 1222;
+    });
+
     final data = await transaksiBloc.getTotalBayar(widget.id_pelanggan);
 
-    if (data['status']) {
+    bool status = data['status'];
+    String message = data['message'];
+
+    if (status) {
       setState(() {
         totalString = data['data']['totalBayar'];
         totalBayar = int.parse(totalString);
@@ -163,7 +171,7 @@ class _PemesananState extends State<Pemesanan> {
         totalOngkir = int.parse(totalString2);
       });
     } else {
-      print(data['message']);
+      print(message);
     }
   }
 }

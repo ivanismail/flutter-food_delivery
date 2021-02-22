@@ -7,7 +7,7 @@ class TransaksiProvider {
   Client client = Client();
 
   Future<dynamic> getTotalBayar(String id_pelanggan) async {
-    var uri = Uri.parse(BaseURL.urlGetTotalbayar);
+    var uri = Uri.parse(BaseURL.urlGetTotalBayar);
 
     uri = uri.replace(queryParameters: <String, String>{
       'id_pelanggan': id_pelanggan,
