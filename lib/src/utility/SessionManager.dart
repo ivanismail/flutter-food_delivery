@@ -67,7 +67,7 @@ class SessionManager {
     Map data = {
       'payment':
           preferences.getString('payment') ?? 'Metode pembayaran belum dipilih',
-      'hasData': preferences.getDouble('hasData') ?? false,
+      'hasData': preferences.getBool('hasData') ?? false,
     };
 
     return data;

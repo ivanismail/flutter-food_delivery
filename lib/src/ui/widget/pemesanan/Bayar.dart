@@ -120,6 +120,12 @@ class Bayar extends StatelessWidget {
                   ),
                 ),
                 ListTile(
+                  onTap: () {
+                    SessionManager().setSessionPayment('Debit');
+
+                    getPayment();
+                    Navigator.pop(context);
+                  },
                   leading: Icon(Icons.payment),
                   trailing: payment == 'Debit'
                       ? Icon(
