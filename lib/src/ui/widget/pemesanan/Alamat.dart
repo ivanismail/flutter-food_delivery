@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/ui/main/Maps.dart';
 
 class Alamat extends StatelessWidget {
   String alamat;
@@ -22,7 +23,14 @@ class Alamat extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Maps(
+                        getAddress: getAddress,
+                      )));
+        },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
