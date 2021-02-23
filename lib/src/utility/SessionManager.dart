@@ -40,7 +40,7 @@ class SessionManager {
       'latitude': preferences.getDouble('latitude') ?? 0.0,
       'longitude': preferences.getDouble('longitude') ?? 0.0,
       'alamat': preferences.getString('alamat') ?? 'Alamat kirim belum dipilih',
-      'hasData': preferences.getDouble('hasData') ?? false,
+      'hasData': preferences.getBool('hasData') ?? false,
     };
 
     return data;
