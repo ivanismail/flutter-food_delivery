@@ -79,7 +79,8 @@ class _MapsState extends State<Maps> {
                                   setState(() {
                                     isSet = true;
                                   });
-                                }),
+                                }
+                                ),
                           );
                         });
                       },
@@ -220,15 +221,11 @@ class _MapsState extends State<Maps> {
 
       if (mounted) {
         setState(() {
-          _alamat = placemark[0].name.toString() +
-              ", " +
-              placemark[0].subLocality.toString() +
-              ", " +
-              placemark[0].locality.toString() +
-              ", " +
-              placemark[0].administrativeArea.toString() +
-              ", " +
-              placemark[0].country.toString();
+          _alamat = placemark[0].name.toString() + ", "
+              + placemark[0].subLocality.toString() + ", "
+              + placemark[0].locality.toString() + ", "
+              + placemark[0].administrativeArea.toString() + ", "
+              + placemark[0].country.toString();
         });
       }
     } catch (e) {
