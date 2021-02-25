@@ -54,173 +54,179 @@ class _PemesananState extends State<Pemesanan> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar(context),
-      body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 60.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 15.0,
-                        right: 15.0,
-                        top: 10.0,
-                      ),
-                      child: Text(
-                        'ALAMAT KIRIM',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 12.0,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                    Alamat(
-                      alamat: alamat,
-                      getAddress: _getAddress,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 15.0,
-                        right: 15.0,
-                        top: 10.0,
-                      ),
-                      child: Text(
-                        'RINGKASAN PESANAN',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 12.0,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                    ListPesanan(
-                      id_pelanggan: widget.id_pelanggan,
-                      ongkir: totalOngkir,
-                      totalBayar: totalBayar,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 15.0,
-                        right: 15.0,
-                        top: 10.0,
-                      ),
-                      child: Text(
-                        'METODE PEMBAYARAN',
-                        style: TextStyle(
-                          fontFamily: 'Varela',
-                          fontSize: 12.0,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                    ),
-                    Bayar(
-                      payment: payment,
-                      getPayment: _getPayment,
-                    ),
-                    Catatan(
-                      noteController: _noteController,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0.1,
-              left: 0.1,
-              right: 0.1,
-              child: Container(
-                height: 60.0,
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 1.0,
-                      color: Colors.grey.withOpacity(0.1),
-                      spreadRadius: 1.0,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Material(
-                        color: Colors.transparent,
-                        elevation: 0.0,
-                        borderRadius: BorderRadius.circular(0.5),
-                        child: Container(
-                          width: 50.0,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Total Bayar',
-                                style: TextStyle(
-                                  fontFamily: 'Varela',
-                                  fontSize: 14.0,
-                                ),
-                              ),
-                              Text(
-                                'Rp. ${formatter.format(totalBayar + totalOngkir)}',
-                                style: TextStyle(
-                                  fontFamily: 'Varela',
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5.0,
-                    ),
-                    Material(
-                      elevation: 0.0,
-                      color: Colors.lightBlue[800],
-                      borderRadius: BorderRadius.circular(5.0),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(5.0),
-                        onTap: () {
-                          if (!validAlamat) {
-                            ShowToast()
-                                .showToastWarning("Alamat kirim belum dipilih");
-                          } else if (!validPayment) {
-                            ShowToast().showToastWarning(
-                                "Payment kirim belum dipilih");
-                          } else {
-                            _postTransaction();
-                          }
-                        },
-                        child: Container(
-                          width: 160.0,
-                          child: Center(
+      body: !isKirim
+          ? SafeArea(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: 60.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 15.0,
+                              right: 15.0,
+                              top: 10.0,
+                            ),
                             child: Text(
-                              'PESAN SEKARANG',
+                              'ALAMAT KIRIM',
                               style: TextStyle(
                                 fontFamily: 'Varela',
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 12.0,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Alamat(
+                            alamat: alamat,
+                            getAddress: _getAddress,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 15.0,
+                              right: 15.0,
+                              top: 10.0,
+                            ),
+                            child: Text(
+                              'RINGKASAN PESANAN',
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 12.0,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          ListPesanan(
+                            id_pelanggan: widget.id_pelanggan,
+                            ongkir: totalOngkir,
+                            totalBayar: totalBayar,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 15.0,
+                              right: 15.0,
+                              top: 10.0,
+                            ),
+                            child: Text(
+                              'METODE PEMBAYARAN',
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 12.0,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          Bayar(
+                            payment: payment,
+                            getPayment: _getPayment,
+                          ),
+                          Catatan(
+                            noteController: _noteController,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0.1,
+                    left: 0.1,
+                    right: 0.1,
+                    child: Container(
+                      height: 60.0,
+                      padding: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 1.0,
+                            color: Colors.grey.withOpacity(0.1),
+                            spreadRadius: 1.0,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Material(
+                              color: Colors.transparent,
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(0.5),
+                              child: Container(
+                                width: 50.0,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Total Bayar',
+                                      style: TextStyle(
+                                        fontFamily: 'Varela',
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Rp. ${formatter.format(totalBayar + totalOngkir)}',
+                                      style: TextStyle(
+                                        fontFamily: 'Varela',
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Material(
+                            elevation: 0.0,
+                            color: Colors.lightBlue[800],
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(5.0),
+                              onTap: () {
+                                /*if (!validAlamat) {
+                            ShowToast()
+                                .showToastWarning("Alamat kirim belum dipilih");
+                          } else*/
+                                if (!validPayment) {
+                                  ShowToast().showToastWarning(
+                                      "Payment kirim belum dipilih");
+                                } else {
+                                  _postTransaction();
+                                }
+                              },
+                              child: Container(
+                                width: 160.0,
+                                child: Center(
+                                  child: Text(
+                                    'PESAN SEKARANG',
+                                    style: TextStyle(
+                                      fontFamily: 'Varela',
+                                      color: Colors.white,
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+            )
+          : Center(
+              child: CircularProgressIndicator(),
             ),
-          ],
-        ),
-      ),
     );
   }
 
