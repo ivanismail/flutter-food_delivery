@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/src/ui/widget/maps/AppBarMaps.dart';
 import 'package:food_delivery/src/utility/FadeAnimation.dart';
 import 'package:food_delivery/src/utility/SessionManager.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class Maps extends StatefulWidget {
   VoidCallback getAddress;
@@ -79,8 +79,7 @@ class _MapsState extends State<Maps> {
                                   setState(() {
                                     isSet = true;
                                   });
-                                }
-                                ),
+                                }),
                           );
                         });
                       },
@@ -221,11 +220,15 @@ class _MapsState extends State<Maps> {
 
       if (mounted) {
         setState(() {
-          _alamat = placemark[0].name.toString() + ", "
-              + placemark[0].subLocality.toString() + ", "
-              + placemark[0].locality.toString() + ", "
-              + placemark[0].administrativeArea.toString() + ", "
-              + placemark[0].country.toString();
+          _alamat = placemark[0].name.toString() +
+              ", " +
+              placemark[0].subLocality.toString() +
+              ", " +
+              placemark[0].locality.toString() +
+              ", " +
+              placemark[0].administrativeArea.toString() +
+              ", " +
+              placemark[0].country.toString();
         });
       }
     } catch (e) {

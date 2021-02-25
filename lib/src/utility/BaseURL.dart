@@ -18,4 +18,5 @@ class BaseURL {
   static String urlGetTotalItem = baseURL + "get-total-item";
   //Transaksi Pemesanan
   static String urlGetTotalBayar = baseURL + "get-total-bayar";
+  static String urlPostTransaction = baseURL + "add-transaction";
 }

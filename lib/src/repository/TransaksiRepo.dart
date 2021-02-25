@@ -6,4 +6,8 @@ class TransaksiRepo {
   Future getTotalBayar(String id_pelanggan) {
     return _provider.getTotalBayar(id_pelanggan);
   }
+
+  Future postTransaction(Map<String, String> data) {
+    return _provider.postTransaction(data);
+  }
 }
