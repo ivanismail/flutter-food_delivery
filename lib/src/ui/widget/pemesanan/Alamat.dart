@@ -50,6 +50,7 @@ class Alamat extends StatelessWidget {
                   text: TextSpan(
                     style: TextStyle(
                       fontFamily: 'Varela',
+                      color: Colors.grey,
                       fontSize: 13.0,
                     ),
                     text: alamat,
