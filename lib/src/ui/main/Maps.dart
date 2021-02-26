@@ -25,7 +25,7 @@ class _MapsState extends State<Maps> {
   List<Placemark> placemark;
 
   double lat;
-  double lng;
+  double long;
   String _alamat;
   bool isSave;
   bool isSet;
@@ -67,7 +67,7 @@ class _MapsState extends State<Maps> {
                           _markers.clear();
 
                           lat = position.latitude;
-                          lng = position.longitude;
+                          long = position.longitude;
 
                           _markers.add(
                             Marker(
@@ -216,7 +216,7 @@ class _MapsState extends State<Maps> {
     });
 
     try {
-      placemark = await Geolocator().placemarkFromCoordinates(lat, lng);
+      placemark = await Geolocator().placemarkFromCoordinates(lat, long);
 
       if (mounted) {
         setState(() {
@@ -237,7 +237,7 @@ class _MapsState extends State<Maps> {
 
     print(_alamat);
 
-    SessionManager().setSessionAddress(lat, lng, _alamat);
+    SessionManager().setSessionAddress(lat, long, _alamat);
 
     setState(() {
       isSave = false;

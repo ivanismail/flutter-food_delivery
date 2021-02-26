@@ -25,10 +25,10 @@ class SessionManager {
   }
 
   //Session Address
-  setSessionAddress(double lat, double lng, String alamat) async {
+  setSessionAddress(double lat, double long, String alamat) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setDouble('latitude', lat);
-    preferences.setDouble('longitude', lng);
+    preferences.setDouble('longitude', long);
     preferences.setString('alamat', alamat);
     preferences.setBool('hasData', true);
   }
