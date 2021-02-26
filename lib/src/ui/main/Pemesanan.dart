@@ -291,14 +291,16 @@ class _PemesananState extends State<Pemesanan> {
 
     final result = await transaksiBloc.postTransaction(data);
 
-    if (result['status']) {
+    bool status = result['status'];
+    String message = result['message'];
+
+    if (status) {
       setState(() {
         isKirim = false;
       });
 
-      SessionManager().removeSessionAddress();
       SessionManager().removeSessionPayment();
-      ShowToast().showToastSuccess(result['message']);
+      ShowToast().showToastSuccess(result[message]);
 
       Navigator.pushAndRemoveUntil(
         context,
@@ -311,7 +313,7 @@ class _PemesananState extends State<Pemesanan> {
       setState(() {
         isKirim = false;
       });
-      ShowToast().showToastError(result['message']);
+      ShowToast().showToastError(message);
     }
   }
 }
