@@ -8,7 +8,6 @@ import 'package:food_delivery/src/ui/widget/pemesanan/Catatan.dart';
 import 'package:food_delivery/src/ui/widget/pemesanan/ListPesanan.dart';
 import 'package:food_delivery/src/utility/SessionManager.dart';
 import 'package:food_delivery/src/utility/ShowToast.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 
 class Pemesanan extends StatefulWidget {
