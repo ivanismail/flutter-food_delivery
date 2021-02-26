@@ -29,7 +29,7 @@ class TransaksiProvider {
       'latitude': data['latitude'],
       'longtude': data['longitude'],
       'id_pelanggan': data['id_pelanggan'],
-      'note': data['noter'],
+      'note': data['note'],
       'payment': data['payment'],
       'ongkir': data['ongkir'],
     });

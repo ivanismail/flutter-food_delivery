@@ -300,7 +300,7 @@ class _PemesananState extends State<Pemesanan> {
       });
 
       SessionManager().removeSessionPayment();
-      ShowToast().showToastSuccess(result[message]);
+      ShowToast().showToastSuccess(message);
 
       Navigator.pushAndRemoveUntil(
         context,
