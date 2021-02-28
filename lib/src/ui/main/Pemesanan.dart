@@ -298,6 +298,7 @@ class _PemesananState extends State<Pemesanan> {
         isKirim = false;
       });
 
+      SessionManager().removeSessionAddress();
       SessionManager().removeSessionPayment();
       ShowToast().showToastSuccess(message);
 
