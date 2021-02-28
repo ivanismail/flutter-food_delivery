@@ -25,7 +25,7 @@ class _PemesananState extends State<Pemesanan> {
   final formatter = NumberFormat("#,###");
 
   double lat;
-  double lng;
+  double long;
   String alamat;
   String payment;
   String totalString;
@@ -234,7 +234,7 @@ class _PemesananState extends State<Pemesanan> {
 
     setState(() {
       lat = _result['latitude'];
-      lng = _result['longitude'];
+      long = _result['longitude'];
       alamat = _result['alamat'];
       validAlamat = _result['hasData'];
     });
@@ -281,7 +281,7 @@ class _PemesananState extends State<Pemesanan> {
       'total_bayar': (totalBayar + totalOngkir).toString(),
       'alamat_kirim': alamat,
       'latitude': lat.toString(),
-      'longitude': lng.toString(),
+      'longitude': long.toString(),
       'id_pelanggan': widget.id_pelanggan,
       'note': _noteController.text,
       'payment': payment,

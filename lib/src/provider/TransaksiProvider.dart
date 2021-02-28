@@ -27,7 +27,7 @@ class TransaksiProvider {
       'total_bayar': data['total_bayar'],
       'alamat_kirim': data['alamat_kirim'],
       'latitude': data['latitude'],
-      'longtude': data['longitude'],
+      'longitude': data['longitude'],
       'id_pelanggan': data['id_pelanggan'],
       'note': data['note'],
       'payment': data['payment'],
