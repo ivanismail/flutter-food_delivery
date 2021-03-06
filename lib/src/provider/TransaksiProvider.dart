@@ -36,4 +36,22 @@ class TransaksiProvider {
 
     return jsonDecode(res.body);
   }
+
+  //get Address
+  Future<dynamic> getAddressMap(Map<String, String> datalg) async {
+    var uri = Uri.parse(BaseURL.urlGetAddressHereMap);
+
+    uri = uri.replace(queryParameters: <String, String>{
+      'mode': datalg['mode'],
+      'maxresult': datalg['maxresults'],
+      'apiKey': datalg['apiKey'],
+      'prox': datalg['prox'],
+    });
+
+    final res = await client.get(uri, headers: {
+      'Accept': 'aplication/json',
+    });
+
+    return jsonDecode(res.body);
+  }
 }

@@ -10,4 +10,8 @@ class TransaksiRepo {
   Future postTransaction(Map<String, String> data) {
     return _provider.postTransaction(data);
   }
+
+  Future getAddressMap(Map<String, String> datalg) {
+    return _provider.getAddressMap(datalg);
+  }
 }

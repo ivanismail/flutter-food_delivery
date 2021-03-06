@@ -10,6 +10,10 @@ class TransaksiBloc {
   postTransaction(Map<String, String> data) {
     return _repo.postTransaction(data);
   }
+
+  getAddressMap(Map<String, String> datalg) {
+    return _repo.getAddressMap(datalg);
+  }
 }
 
 final transaksiBloc = TransaksiBloc();

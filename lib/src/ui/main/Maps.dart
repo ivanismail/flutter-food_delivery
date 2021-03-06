@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/bloc/TransaksiBloc.dart';
 import 'package:food_delivery/src/ui/widget/maps/AppBarMaps.dart';
 import 'package:food_delivery/src/utility/FadeAnimation.dart';
 import 'package:food_delivery/src/utility/SessionManager.dart';
@@ -27,6 +28,7 @@ class _MapsState extends State<Maps> {
   double lat;
   double long;
   String _alamat;
+  String prox, s1, s2, mode, maxresults, apiKey;
   bool isSave;
   bool isSet;
 
@@ -210,27 +212,76 @@ class _MapsState extends State<Maps> {
     }
   }
 
+  // _setAlamat() async {
+  //   setState(() {
+  //     isSave = true;
+  //   });
+
+  //   try {
+  //     placemark = await Geolocator().placemarkFromCoordinates(lat, long);
+
+  //     if (mounted) {
+  //       setState(() {
+  //         _alamat = placemark[0].name.toString() +
+  //             ", " +
+  //             placemark[0].subLocality.toString() +
+  //             ", " +
+  //             placemark[0].locality.toString() +
+  //             ", " +
+  //             placemark[0].administrativeArea.toString() +
+  //             ", " +
+  //             placemark[0].country.toString();
+  //       });
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+
+  //   print(_alamat);
+
+  //   SessionManager().setSessionAddress(lat, long, _alamat);
+
+  //   setState(() {
+  //     isSave = false;
+  //   });
+
+  //   Navigator.pop(context);
+  //   widget.getAddress();
+  // }
+
   _setAlamat() async {
     setState(() {
       isSave = true;
     });
 
     try {
-      placemark = await Geolocator().placemarkFromCoordinates(lat, long);
+      mode= "retrieveAddresses";
+      maxresults="1";
+      apiKey="7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
 
-      if (mounted) {
-        setState(() {
-          _alamat = placemark[0].name.toString() +
-              ", " +
-              placemark[0].subLocality.toString() +
-              ", " +
-              placemark[0].locality.toString() +
-              ", " +
-              placemark[0].administrativeArea.toString() +
-              ", " +
-              placemark[0].country.toString();
-        });
-      }
+      var s1 = double.parse(lat.toString());
+      var s2 = double.parse(long.toString());
+      prox = s1.toString() + ',' + s2.toString();
+
+      Map<String, String> datalg = {
+        'mode': mode,
+        'maxresult': maxresults,
+        'apiKey': apiKey,
+        'prox': prox,
+      };
+
+      final data = await transaksiBloc.getAddressMap(datalg);
+
+      // bool status = data['status'];
+      // String message = data['message'];
+
+      // if (status) {
+      setState(() {
+        _alamat = data['Response']['MetaInfo']['Timestamp'];
+      });
+      // } else {
+      //   print(message);
+      // }
     } catch (e) {
       print(e.toString());
     }
