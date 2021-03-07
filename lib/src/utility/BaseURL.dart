@@ -5,7 +5,7 @@ class BaseURL {
 
   static String apiKey = "7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
   static String urlGetAddressHereMap =
-      "https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?mode=retrieveAddresses&maxresults=1&gen=9&apiKey=7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
+      "https://revgeocode.search.hereapi.com/v1/revgeocode?apiKey=7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
 
   //Produk
   static String urlGetProduk = baseURL + "get-produk";

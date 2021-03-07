@@ -1,16 +1,20 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:food_delivery/src/bloc/TransaksiBloc.dart';
+import 'package:food_delivery/src/model/AddressModel.dart';
 import 'package:food_delivery/src/ui/widget/maps/AppBarMaps.dart';
+import 'package:food_delivery/src/utility/BaseURL.dart';
 import 'package:food_delivery/src/utility/FadeAnimation.dart';
 import 'package:food_delivery/src/utility/SessionManager.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:here_maps_webservice/here_maps_webservice.dart';
 
 class Maps extends StatefulWidget {
   VoidCallback getAddress;
+
+  List<dynamic> _nearbyPlaces = [];
 
   Maps({this.getAddress});
   @override
@@ -28,7 +32,7 @@ class _MapsState extends State<Maps> {
   double lat;
   double long;
   String _alamat;
-  String prox, s1, s2, mode, maxresults, apiKey;
+  String at, s1, s2, output, apiKey;
   bool isSave;
   bool isSet;
 
@@ -111,6 +115,7 @@ class _MapsState extends State<Maps> {
                                       borderRadius: BorderRadius.circular(5.0),
                                       onTap: () {
                                         _setAlamat();
+
                                       },
                                       child: Container(
                                         width: 100.0,
@@ -212,6 +217,35 @@ class _MapsState extends State<Maps> {
     }
   }
 
+  _setAlamat() async {
+    setState(() {
+      isSave = true;
+    });
+
+    try {
+      HereMaps(apiKey: BaseURL.apiKey)
+          .exploreNearbyPlaces(lat: lat, lon: long, offset: 10)
+          .then((response) {
+         setState(() {
+           _alamat=(response['result']['items']);
+         });
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+
+    print(_alamat);
+
+    SessionManager().setSessionAddress(lat, long, _alamat);
+
+    setState(() {
+      isSave = false;
+    });
+
+    Navigator.pop(context);
+    widget.getAddress();
+  }
+
   // _setAlamat() async {
   //   setState(() {
   //     isSave = true;
@@ -249,52 +283,46 @@ class _MapsState extends State<Maps> {
   //   widget.getAddress();
   // }
 
-  _setAlamat() async {
-    setState(() {
-      isSave = true;
-    });
-
-    try {
-      mode= "retrieveAddresses";
-      maxresults="1";
-      apiKey="7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
-
-      var s1 = double.parse(lat.toString());
-      var s2 = double.parse(long.toString());
-      prox = s1.toString() + ',' + s2.toString();
-
-      Map<String, String> datalg = {
-        'mode': mode,
-        'maxresult': maxresults,
-        'apiKey': apiKey,
-        'prox': prox,
-      };
-
-      final data = await transaksiBloc.getAddressMap(datalg);
-
-      // bool status = data['status'];
-      // String message = data['message'];
-
-      // if (status) {
-      setState(() {
-        _alamat = data['Response']['MetaInfo']['Timestamp'];
-      });
-      // } else {
-      //   print(message);
-      // }
-    } catch (e) {
-      print(e.toString());
-    }
-
-    print(_alamat);
-
-    SessionManager().setSessionAddress(lat, long, _alamat);
-
-    setState(() {
-      isSave = false;
-    });
-
-    Navigator.pop(context);
-    widget.getAddress();
-  }
+  // _setAlamat() async {
+  //   setState(() {
+  //     isSave = true;
+  //   });
+  //
+  //   try {
+  //     //apiKey = "7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
+  //
+  //     var s1 = double.parse(lat.toString());
+  //     var s2 = double.parse(long.toString());
+  //     at = s1.toString() + ',' + s2.toString();
+  //
+  //     User.getUsers("-6.272202,106.912216,15").then((users) {
+  //       output = "";
+  //       for (int i=0; i < users.length; i++)
+  //         output = output + " " + users[i].title + " ";
+  //       setState(() {
+  //
+  //       });
+  //
+  //     });
+  //
+  //
+  //
+  //     // } else {
+  //     //   print(message);
+  //     // }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  //   //String tags;
+  //   print(output);
+  //
+  //   SessionManager().setSessionAddress(lat, long, _alamat);
+  //
+  //   setState(() {
+  //     isSave = false;
+  //   });
+  //
+  //   Navigator.pop(context);
+  //   widget.getAddress();
+  // }
 }

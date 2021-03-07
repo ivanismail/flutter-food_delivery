@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:food_delivery/src/model/AddressModel.dart';
 import 'package:food_delivery/src/utility/BaseURL.dart';
 import 'package:http/http.dart' show Client;
 
@@ -38,20 +39,17 @@ class TransaksiProvider {
   }
 
   //get Address
-  Future<dynamic> getAddressMap(Map<String, String> datalg) async {
-    var uri = Uri.parse(BaseURL.urlGetAddressHereMap);
+  // Future<List<AddressModel>> getAddressMap(Map<String, String> datalg) async {
+  //   var uri = Uri.parse(BaseURL.urlGetAddressHereMap);
 
-    uri = uri.replace(queryParameters: <String, String>{
-      'mode': datalg['mode'],
-      'maxresult': datalg['maxresults'],
-      'apiKey': datalg['apiKey'],
-      'prox': datalg['prox'],
-    });
+  //   uri = uri.replace(queryParameters: <String, String>{
+  //     'at': datalg['at'],
+  //   });
 
-    final res = await client.get(uri, headers: {
-      'Accept': 'aplication/json',
-    });
+  //   final res = await client.get(uri, headers: {
+  //     'Accept': 'aplication/json',
+  //   });
 
-    return jsonDecode(res.body);
-  }
+  //   return jsonDecode(res.body);
+  // }
 }

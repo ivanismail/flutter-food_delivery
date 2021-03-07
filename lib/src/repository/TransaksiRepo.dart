@@ -1,3 +1,4 @@
+import 'package:food_delivery/src/model/AddressModel.dart';
 import 'package:food_delivery/src/provider/TransaksiProvider.dart';
 
 class TransaksiRepo {
@@ -11,7 +12,7 @@ class TransaksiRepo {
     return _provider.postTransaction(data);
   }
 
-  Future getAddressMap(Map<String, String> datalg) {
-    return _provider.getAddressMap(datalg);
-  }
+  // Future<List<AddressModel>> getAddressMap(Map<String, String> datalg) {
+  //   return _provider.getAddressMap(datalg);
+  // }
 }

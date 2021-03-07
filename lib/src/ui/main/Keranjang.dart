@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/src/bloc/KeranjangBloc.dart';
 import 'package:food_delivery/src/model/KeranjangModel.dart';
 import 'package:food_delivery/src/ui/main/Pemesanan.dart';
-import 'package:food_delivery/src/ui/widget/detail/AppBarDetail.dart';
 import 'package:food_delivery/src/ui/widget/keranjang/AppBarKeranjang.dart';
 import 'package:food_delivery/src/ui/widget/keranjang/BuildListKeranjang.dart';
 
@@ -126,8 +125,7 @@ class _KeranjangState extends State<Keranjang> {
                             MaterialPageRoute(
                                 builder: (context) => Pemesanan(
                                       id_pelanggan: widget.id_pelanggan,
-                                    )
-                            ));
+                                    )));
                       },
                     ),
                   ),

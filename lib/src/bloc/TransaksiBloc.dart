@@ -1,4 +1,6 @@
+import 'package:food_delivery/src/model/AddressModel.dart';
 import 'package:food_delivery/src/repository/TransaksiRepo.dart';
+import 'package:rxdart/rxdart.dart';
 
 class TransaksiBloc {
   final _repo = TransaksiRepo();
@@ -11,9 +13,22 @@ class TransaksiBloc {
     return _repo.postTransaction(data);
   }
 
-  getAddressMap(Map<String, String> datalg) {
-    return _repo.getAddressMap(datalg);
-  }
+  // final _getAllAddress = PublishSubject<List<AddressModel>>();
+  // Observable<List<AddressModel>> get countAddress => _getAllAddress.stream;
+
+  // getAddressMap(Map<String, String> datalg) async {
+  //   List<AddressModel> addressMap = await _repo.getAddressMap(datalg);
+  //   _getAllAddress.sink.add(addressMap);
+  // }
+
+  // dispose() async {
+  //   await _getAllAddress.drain();
+  //   _getAllAddress.close();
+  // }
+
+  // getAddressMap(Map<String, String> datalg) {
+  //   return _repo.getAddressMap(datalg);
+  // }
 }
 
 final transaksiBloc = TransaksiBloc();
