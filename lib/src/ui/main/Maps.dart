@@ -247,69 +247,31 @@ class _MapsState extends State<Maps> {
   //   widget.getAddress();
   // }
 
-  // _setAlamat() async {
-  //   setState(() {
-  //     isSave = true;
-  //   });
-  //
-  //   try {
-  //     placemark = await Geolocator().placemarkFromCoordinates(lat, long);
-  //
-  //     if (mounted) {
-  //       setState(() {
-  //         _alamat = placemark[0].name.toString() +
-  //             ", " +
-  //             placemark[0].subLocality.toString() +
-  //             ", " +
-  //             placemark[0].locality.toString() +
-  //             ", " +
-  //             placemark[0].administrativeArea.toString() +
-  //             ", " +
-  //             placemark[0].country.toString();
-  //       });
-  //     }
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  //
-  //   print(_alamat);
-  //
-  //   SessionManager().setSessionAddress(lat, long, _alamat);
-  //
-  //   setState(() {
-  //     isSave = false;
-  //   });
-  //
-  //   Navigator.pop(context);
-  //   widget.getAddress();
-  // }
-
   _setAlamat() async {
     setState(() {
       isSave = true;
     });
 
     try {
-      //apiKey = "7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
+      placemark = await Geolocator().placemarkFromCoordinates(lat, long);
 
-      var s1 = double.parse(lat.toString());
-      var s2 = double.parse(long.toString());
-      at = s1.toString() + ',' + s2.toString();
-
-      User.getUsers("-6.272202,106.912216,15").then((users) {
-        output = "";
-        for (int i = 0; i < users.length; i++)
-          _alamat = output + " " + users[i].title + " ";
-        setState(() {});
-      });
-
-      // } else {
-      //   print(message);
-      // }
+      if (mounted) {
+        setState(() {
+          _alamat = placemark[0].name.toString() +
+              ", " +
+              placemark[0].subLocality.toString() +
+              ", " +
+              placemark[0].locality.toString() +
+              ", " +
+              placemark[0].administrativeArea.toString() +
+              ", " +
+              placemark[0].country.toString();
+        });
+      }
     } catch (e) {
       print(e.toString());
     }
-    //String tags;
+
     print(_alamat);
 
     SessionManager().setSessionAddress(lat, long, _alamat);
@@ -321,4 +283,42 @@ class _MapsState extends State<Maps> {
     Navigator.pop(context);
     widget.getAddress();
   }
+
+  // _setAlamat() async {
+  //   setState(() {
+  //     isSave = true;
+  //   });
+
+  //   try {
+  //     //apiKey = "7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
+
+  //     var s1 = double.parse(lat.toString());
+  //     var s2 = double.parse(long.toString());
+  //     at = s1.toString() + ',' + s2.toString();
+
+  //     User.getUsers("-6.272202,106.912216,15").then((users) {
+  //       output = "";
+  //       for (int i = 0; i < users.length; i++)
+  //         _alamat = output + " " + users[i].title + " ";
+  //       setState(() {});
+  //     });
+
+  //     // } else {
+  //     //   print(message);
+  //     // }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  //   //String tags;
+  //   print(_alamat);
+
+  //   SessionManager().setSessionAddress(lat, long, _alamat);
+
+  //   setState(() {
+  //     isSave = false;
+  //   });
+
+  //   Navigator.pop(context);
+  //   widget.getAddress();
+  // }
 }

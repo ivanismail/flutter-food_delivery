@@ -16,6 +16,7 @@ class _MainNavigationState extends State<MainNavigation> {
   var page;
 
   bool isLogin;
+  String id_pelanggan;
 
   @override
   void initState() {
@@ -81,7 +82,9 @@ class _MainNavigationState extends State<MainNavigation> {
     } else if (i == 1) {
       if (isLogin) {
         setState(() {
-          page = Transaksi();
+          page = Transaksi( id_pelanggan:
+          id_pelanggan,);
+
         });
       } else {
         Navigator.pushAndRemoveUntil(
@@ -109,9 +112,11 @@ class _MainNavigationState extends State<MainNavigation> {
 
   _getLogin() async {
     bool _isLogin = await SessionManager().getIsLogin();
+    String _id = await SessionManager().getIdPelanggan();
 
     setState(() {
       isLogin = _isLogin;
+      id_pelanggan = _id;
     });
   }
 }
