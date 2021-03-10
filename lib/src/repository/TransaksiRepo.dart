@@ -15,4 +15,8 @@ class TransaksiRepo {
   // Future<List<AddressModel>> getAddressMap(Map<String, String> datalg) {
   //   return _provider.getAddressMap(datalg);
   // }
+
+  Future<List<AddressModel>> getAddressMap(String at) {
+    return _provider.getAddressMap(at);
+  }
 }

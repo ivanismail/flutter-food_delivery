@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery/src/bloc/TransaksiBloc.dart';
 import 'package:food_delivery/src/model/AddressModel.dart';
 import 'package:food_delivery/src/ui/widget/maps/AppBarMaps.dart';
 import 'package:food_delivery/src/utility/BaseURL.dart';
@@ -47,6 +48,7 @@ class _MapsState extends State<Maps> {
 
   @override
   Widget build(BuildContext context) {
+    transaksiBloc.getAddressMap(at);
     return Scaffold(
         appBar: AppBarMaps(context: context),
         body: latLng == null
@@ -115,7 +117,6 @@ class _MapsState extends State<Maps> {
                                       borderRadius: BorderRadius.circular(5.0),
                                       onTap: () {
                                         _setAlamat();
-
                                       },
                                       child: Container(
                                         width: 100.0,
@@ -217,43 +218,43 @@ class _MapsState extends State<Maps> {
     }
   }
 
-  _setAlamat() async {
-    setState(() {
-      isSave = true;
-    });
-
-    try {
-      HereMaps(apiKey: BaseURL.apiKey)
-          .exploreNearbyPlaces(lat: lat, lon: long, offset: 10)
-          .then((response) {
-         setState(() {
-           _alamat=(response['result']['items']);
-         });
-      });
-    } catch (e) {
-      print(e.toString());
-    }
-
-    print(_alamat);
-
-    SessionManager().setSessionAddress(lat, long, _alamat);
-
-    setState(() {
-      isSave = false;
-    });
-
-    Navigator.pop(context);
-    widget.getAddress();
-  }
+  // _setAlamat() async {
+  //   setState(() {
+  //     isSave = true;
+  //   });
+  //
+  //   try {
+  //     HereMaps(apiKey: BaseURL.apiKey)
+  //         .exploreNearbyPlaces(lat: lat, lon: long, offset: 10)
+  //         .then((response) {
+  //        setState(() {
+  //          _alamat=(response['result']['items']);
+  //        });
+  //     });
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  //
+  //   print(_alamat);
+  //
+  //   SessionManager().setSessionAddress(lat, long, _alamat);
+  //
+  //   setState(() {
+  //     isSave = false;
+  //   });
+  //
+  //   Navigator.pop(context);
+  //   widget.getAddress();
+  // }
 
   // _setAlamat() async {
   //   setState(() {
   //     isSave = true;
   //   });
-
+  //
   //   try {
   //     placemark = await Geolocator().placemarkFromCoordinates(lat, long);
-
+  //
   //     if (mounted) {
   //       setState(() {
   //         _alamat = placemark[0].name.toString() +
@@ -270,51 +271,8 @@ class _MapsState extends State<Maps> {
   //   } catch (e) {
   //     print(e.toString());
   //   }
-
+  //
   //   print(_alamat);
-
-  //   SessionManager().setSessionAddress(lat, long, _alamat);
-
-  //   setState(() {
-  //     isSave = false;
-  //   });
-
-  //   Navigator.pop(context);
-  //   widget.getAddress();
-  // }
-
-  // _setAlamat() async {
-  //   setState(() {
-  //     isSave = true;
-  //   });
-  //
-  //   try {
-  //     //apiKey = "7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
-  //
-  //     var s1 = double.parse(lat.toString());
-  //     var s2 = double.parse(long.toString());
-  //     at = s1.toString() + ',' + s2.toString();
-  //
-  //     User.getUsers("-6.272202,106.912216,15").then((users) {
-  //       output = "";
-  //       for (int i=0; i < users.length; i++)
-  //         output = output + " " + users[i].title + " ";
-  //       setState(() {
-  //
-  //       });
-  //
-  //     });
-  //
-  //
-  //
-  //     // } else {
-  //     //   print(message);
-  //     // }
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  //   //String tags;
-  //   print(output);
   //
   //   SessionManager().setSessionAddress(lat, long, _alamat);
   //
@@ -325,4 +283,42 @@ class _MapsState extends State<Maps> {
   //   Navigator.pop(context);
   //   widget.getAddress();
   // }
+
+  _setAlamat() async {
+    setState(() {
+      isSave = true;
+    });
+
+    try {
+      //apiKey = "7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY";
+
+      var s1 = double.parse(lat.toString());
+      var s2 = double.parse(long.toString());
+      at = s1.toString() + ',' + s2.toString();
+
+      User.getUsers("-6.272202,106.912216,15").then((users) {
+        output = "";
+        for (int i = 0; i < users.length; i++)
+          _alamat = output + " " + users[i].title + " ";
+        setState(() {});
+      });
+
+      // } else {
+      //   print(message);
+      // }
+    } catch (e) {
+      print(e.toString());
+    }
+    //String tags;
+    print(_alamat);
+
+    SessionManager().setSessionAddress(lat, long, _alamat);
+
+    setState(() {
+      isSave = false;
+    });
+
+    Navigator.pop(context);
+    widget.getAddress();
+  }
 }

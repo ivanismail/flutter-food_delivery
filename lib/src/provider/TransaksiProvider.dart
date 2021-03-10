@@ -39,17 +39,17 @@ class TransaksiProvider {
   }
 
   //get Address
-  // Future<List<AddressModel>> getAddressMap(Map<String, String> datalg) async {
-  //   var uri = Uri.parse(BaseURL.urlGetAddressHereMap);
+  Future<List<AddressModel>> getAddressMap(String at) async {
+    var uri = Uri.parse(BaseURL.urlGetAddressHereMap);
 
-  //   uri = uri.replace(queryParameters: <String, String>{
-  //     'at': datalg['at'],
-  //   });
+    uri = uri.replace(queryParameters: <String, String>{
+      'at': at,
+    });
 
-  //   final res = await client.get(uri, headers: {
-  //     'Accept': 'aplication/json',
-  //   });
+    final res = await client.get(uri, headers: {
+      'Accept': 'aplication/json',
+    });
 
-  //   return jsonDecode(res.body);
-  // }
+    return jsonDecode(res.body);
+  }
 }

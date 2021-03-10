@@ -1,6 +1,31 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+List<AddressModel> addressFromJson(String str) {
+  final jsonData = jsonDecode(str);
+  return List<AddressModel>.from(jsonData.map((x) => AddressModel.fromJson(x)));
+}
+
+class AddressModel {
+  String id;
+  String title;
+
+  AddressModel({
+    this.id,
+    this.title,
+  });
+
+  factory AddressModel.fromJson(Map<String, dynamic> json) => AddressModel(
+        id: json['id'],
+        title: json['title'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+      };
+}
+
 class User {
   String id;
   String title;
@@ -13,17 +38,6 @@ class User {
       title: object['title'],
     );
   }
-
-  // static Future<User> connectToAPI(String id) async {
-  //   String apiURL = "https://reqres.in/api/users/" + id;
-  //
-  //   var apiResult = await http.get(apiURL);
-  //   var jsonObject = json.decode(apiResult.body);
-  //   var userData = (jsonObject as Map<String, dynamic>)['data'];
-  //
-  //   return User.createUser(userData);
-  // }
-
   static Future<List<User>> getUsers(String page) async {
     String apiURL =
         "https://revgeocode.search.hereapi.com/v1/revgeocode?apiKey=7_KPQb0dn8oOrxdDqtwfZSypnGze5kFMZFxpv6DThPY&at=" +
@@ -31,7 +45,6 @@ class User {
 
     var apiResult = await http.get(apiURL);
     var jsonObject = json.decode(apiResult.body);
-    //var userData = (jsonObject as List<String, dynamic>)['data'];
     List<dynamic> listUser = (jsonObject as Map<String, dynamic>)['items'];
 
     List<User> users = [];
