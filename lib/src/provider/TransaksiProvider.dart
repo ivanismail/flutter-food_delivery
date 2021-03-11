@@ -91,6 +91,10 @@ class TransaksiProvider {
       'Accept': 'aplication/json',
     });
 
-    return jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      return compute(addressFromJson, res.body);
+    }
+
+    return [];
   }
 }

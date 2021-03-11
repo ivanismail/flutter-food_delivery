@@ -31,29 +31,25 @@ class TransaksiBloc {
     _getAllAddress.sink.add(addressMap);
   }
 
-  disposee() async {
+  disposeAdd() async {
     await _getAllAddress.drain();
     _getAllAddress.close();
   }
-
-  // getAddressMap(Map<String, String> datalg) {
-  //   return _repo.getAddressMap(datalg);
-  // }
 
   getTransaksi(String id_pelanggan) async {
     List<TransaksiModel> trf = await _repo.getTransaksi(id_pelanggan);
     _getTransaksi.sink.add(trf);
   }
 
+  dispose() async {
+    await _getTransaksi.drain();
+    _getTransaksi.close();
+  }
+
   getItemTransaksi(String kd_pemesanan, String id_pelanggan) async {
     List<LogPemesananModel> lg =
         await _repo.getLogTransaksi(kd_pemesanan, id_pelanggan);
     _getItemTransaksi.sink.add(lg);
-  }
-
-  dispose() async {
-    await _getTransaksi.drain();
-    _getTransaksi.close();
   }
 
   disposeLog() async {

@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/model/TransaksiModel.dart';
 import 'package:food_delivery/src/ui/main/DetailTransaksi.dart';
