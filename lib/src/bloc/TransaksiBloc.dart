@@ -1,4 +1,5 @@
 import 'package:food_delivery/src/model/AddressModel.dart';
+import 'package:food_delivery/src/model/LogPemesananModel.dart';
 import 'package:food_delivery/src/model/TransaksiModel.dart';
 import 'package:food_delivery/src/provider/TransaksiProvider.dart';
 import 'package:food_delivery/src/repository/TransaksiRepo.dart';
@@ -9,6 +10,10 @@ class TransaksiBloc {
 
   final _getTransaksi = PublishSubject<List<TransaksiModel>>();
   Stream<List<TransaksiModel>> get countTransaksi => _getTransaksi.stream;
+
+  final _getItemTransaksi = PublishSubject<List<LogPemesananModel>>();
+  Stream<List<LogPemesananModel>> get countItemTransaksi =>
+      _getItemTransaksi.stream;
 
   final _getAllAddress = PublishSubject<List<AddressModel>>();
   Observable<List<AddressModel>> get countAddress => _getAllAddress.stream;
@@ -40,9 +45,20 @@ class TransaksiBloc {
     _getTransaksi.sink.add(trf);
   }
 
+  getItemTransaksi(String kd_pemesanan, String id_pelanggan) async {
+    List<LogPemesananModel> lg =
+        await _repo.getLogTransaksi(kd_pemesanan, id_pelanggan);
+    _getItemTransaksi.sink.add(lg);
+  }
+
   dispose() async {
     await _getTransaksi.drain();
     _getTransaksi.close();
+  }
+
+  disposeLog() async {
+    await _getItemTransaksi.drain();
+    _getItemTransaksi.close();
   }
 }
 

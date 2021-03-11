@@ -76,5 +76,6 @@ class SessionManager {
   removeSessionPayment() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.remove("payment");
+    preferences.remove("hasData");
   }
 }

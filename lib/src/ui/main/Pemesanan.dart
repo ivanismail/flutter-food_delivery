@@ -189,13 +189,12 @@ class _PemesananState extends State<Pemesanan> {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(5.0),
                               onTap: () {
-                                /*if (!validAlamat) {
-                            ShowToast()
-                                .showToastWarning("Alamat kirim belum dipilih");
-                          } else*/
-                                if (!validPayment) {
+                                if (!validAlamat) {
                                   ShowToast().showToastWarning(
-                                      "Payment kirim belum dipilih");
+                                      "Alamat kirim belum dipilih");
+                                } else if (!validPayment) {
+                                  ShowToast().showToastWarning(
+                                      "Metode pembayaran belum dipilih");
                                 } else {
                                   _postTransaction();
                                 }

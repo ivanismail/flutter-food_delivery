@@ -24,4 +24,5 @@ class BaseURL {
   static String urlGetTotalBayar = baseURL + "get-total-bayar";
   static String urlPostTransaction = baseURL + "add-transaction";
   static String urlGetTransaction = baseURL + "get-transaction";
+  static String urlGetLogTransaction = baseURL + "get-log-transaction";
 }

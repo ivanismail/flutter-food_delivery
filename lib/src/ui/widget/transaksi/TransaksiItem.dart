@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/model/TransaksiModel.dart';
+import 'package:food_delivery/src/ui/main/DetailTransaksi.dart';
 
 Widget TransaksiItem(
     {BuildContext context, AsyncSnapshot<List<TransaksiModel>> snapshot}) {
@@ -34,7 +35,23 @@ Widget TransaksiItem(
         }
 
         return GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DetailTransaksi(
+                          kd_pemesanan: data.kd_pemesanan,
+                          tgl_pesan: data.tgl_pesan,
+                          total_bayar: data.total_bayar,
+                          alamat_kirim: data.alamat_kirim,
+                          status: data.status,
+                          noteCancel: data.noteCancel,
+                          note: data.note,
+                          payment: data.payment,
+                          ongkir: data.ongkir,
+                          id_pelanggan: data.id_pelanggan,
+                        )));
+          },
           child: Padding(
             padding: EdgeInsets.only(
               top: 10.0,

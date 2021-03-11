@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show compute;
 import 'package:food_delivery/src/model/AddressModel.dart';
+import 'package:food_delivery/src/model/LogPemesananModel.dart';
 import 'package:food_delivery/src/model/TransaksiModel.dart';
 import 'package:food_delivery/src/utility/BaseURL.dart';
 import 'package:http/http.dart' show Client;
@@ -53,6 +54,26 @@ class TransaksiProvider {
 
     if (res.statusCode == 200) {
       return compute(transaksiFromJson, res.body);
+    }
+
+    return [];
+  }
+
+  Future<List<LogPemesananModel>> getItemTransaksi(
+      String kd_pemesanan, String id_pelanggan) async {
+    var uri = Uri.parse(BaseURL.urlGetLogTransaction);
+
+    uri = uri.replace(queryParameters: <String, String>{
+      'kd_pemesanan': kd_pemesanan,
+      'id_pelanggan': id_pelanggan,
+    });
+
+    final res = await client.get(uri, headers: {
+      'Accept': 'aplication/json',
+    });
+
+    if (res.statusCode == 200) {
+      return compute(logFromJson, res.body);
     }
 
     return [];
