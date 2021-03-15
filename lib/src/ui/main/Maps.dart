@@ -10,7 +10,7 @@ import 'package:food_delivery/src/utility/SessionManager.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:here_maps_webservice/here_maps_webservice.dart';
+//import 'package:here_maps_webservice/here_maps_webservice.dart';
 
 class Maps extends StatefulWidget {
   VoidCallback getAddress;
