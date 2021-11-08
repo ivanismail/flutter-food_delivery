@@ -1,5 +1,5 @@
 class BaseURL {
-  static String domain = "https://tokovenia.com/";
+  static String domain = "https://apps.cindy.co.id/";
   static String baseURL = domain + "fooddelivery/";
   static String baseURLImg = domain + "fooddelivery/assets/produk/";
 
